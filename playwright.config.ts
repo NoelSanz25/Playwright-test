@@ -39,12 +39,13 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] ,
-        launchOptions: {
-          args: ["--start-fullscreen"], // starting the browser in full screen
-          slowMo: 1000,
-      },
       
+      use: { ...devices['Desktop Chrome'] ,
+      launchOptions: {
+        args: ["--start-fullscreen"], // starting the browser in full screen
+        slowMo: 1000, // a 1000 milliseconds pause before each operation. Useful for slow systems.
+      }
+      },
     },
 
     // {
