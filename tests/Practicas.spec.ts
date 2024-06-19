@@ -82,15 +82,9 @@ test('Upload file', async ({ page }) => {
 
 test('do it', async ({ page }, testInfo) => {
  
-    await page.goto('https://www.google.com/');
+    await page.goto('https://www.doitcenter.com.pa/');
    
-    await expect(page).toHaveTitle(/Google/);
-  
-    await page.locator("//*[@id=\"APjFqb\"]").fill("do it center panama")
-    await page.keyboard.press("Enter")
-    await page.mouse.wheel(0,500)
-    await page.waitForTimeout(3000)
-    await page.locator("//*[@id=\"rso\"]/div[1]/div/div/div/div/div/div/div/div[1]/div/span/a").click();
+    await expect(page).toHaveTitle(/Do it Center/);
     await page.waitForTimeout(3000)
     await page.getByRole('link',{name: 'Departamentos'}).click();
     await page.getByText('Construcción',{exact:true}).nth(2).hover();
