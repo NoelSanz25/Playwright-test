@@ -4,10 +4,11 @@ import { defineConfig, devices } from '@playwright/test';
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-require('dotenv').config( {
-  path: `.env.${process.env.NODE_ENV ? process.env.NODE_ENV: 'dev'}`
-}
-);
+ require('dotenv').config(
+ {
+   path: `.env.${process.env.NODE_ENV ? process.env.NODE_ENV: 'dev'}`
+ }
+ );
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -26,33 +27,40 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    headless :true,
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    headless: false,
     trace: 'on-first-retry',
-    // screenshot: "on"
+    screenshot : 'on'
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      
+      use: { ...devices['Desktop Chrome'] ,
+      launchOptions: {
+        args: ["--start-fullscreen"], // starting the browser in full screen
+        slowMo: 1000, // a 1000 milliseconds pause before each operation. Useful for slow systems.
+      }
+      },
+    },
+  
+    /* 
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
     },
 
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+    },
 
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
-
-    /* Test against mobile viewports. */
+   Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
     //   use: { ...devices['Pixel 5'] },
