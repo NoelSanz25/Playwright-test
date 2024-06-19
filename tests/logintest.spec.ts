@@ -5,6 +5,7 @@ import { LoginPage } from './object/LoginPage';
 test('Login', async ({ page }, testInfo) => {
 
   await page.goto(process.env.URL);
+  await page.waitForTimeout(3000)
   await page.locator("//*[@id=\"email\"]").fill("pruebas@yopmail.com")
   await page.locator("//*[@id=\"password\"]").fill("123456")
   await page.getByRole('button', { name: 'Sign Up' }).click();

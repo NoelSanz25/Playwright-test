@@ -80,7 +80,7 @@ test('Upload file', async ({ page }) => {
 
 });
 
-test('do it', async ({ page }) => {
+test('do it', async ({ page }, testInfo) => {
  
     await page.goto('https://www.google.com/');
    
@@ -98,6 +98,12 @@ test('do it', async ({ page }) => {
     await page.locator("#product_checkbox_fulfilment_samedaypickup_vr").uncheck();
     await page.waitForTimeout(3000)
     await page.locator("//*[@id=\"0_10_vr\"]").check();
+    await expect(page).toHaveTitle("Canaletas | Do it Center")
+    await testInfo.attach('prueba do it',{
+      body:await page.screenshot(),
+      contentType:'image/png'
+    })
+    await page.screenshot({path:'screenshot/prueba do it.png'})
 
   });
   test('RadioButon', async ({ page }) => {
