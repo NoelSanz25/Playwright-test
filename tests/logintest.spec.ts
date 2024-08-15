@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from './object/LoginPage';
 import path from 'path';
 
-
 test('Login', async ({ page }, testInfo) => {
 
   await page.goto(process.env.URL);
