@@ -32,6 +32,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     headless: true,
     trace: 'on-first-retry',
+    video: 'on',
     // screenshot: "on"
   },
 
@@ -44,7 +45,8 @@ export default defineConfig({
       launchOptions: {
         args: ["--start-fullscreen"], // starting the browser in full screen
         slowMo: 1000, // a 1000 milliseconds pause before each operation. Useful for slow systems.
-      }
+      },
+      video: "on",
       },
     },
 
